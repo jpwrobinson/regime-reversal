@@ -58,7 +58,7 @@ gmainS<-ggplot(ben_shif, aes(year, macroalgae)) +
     labs(x = '', y = '\npercent cover') +
     theme(plot.margin = unit(c(-.5, 1, 0, 1), 'cm'))
 
-load('data/noaa_dhw_oisst_25km/noaa_dhw_OISST_25km_full.Rdata')
+load('data/noaa_dhw_OISST_25km_full.Rdata')
 ts25<-ts %>% mutate(year = YEAR, dhw = DHW)
 ## add DATEs
 ts25$M<-ifelse(nchar(ts25$M)==1, paste0(0, ts25$M), ts25$M)
