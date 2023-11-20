@@ -2,7 +2,8 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(cowplot)
-theme_set(funk::theme_sleek() + theme(panel.grid.minor = element_blank()))
+source('scripts/themeSleek.R')
+theme_set(theme_sleek() + theme(panel.grid.minor = element_blank()))
 set.seed(47)
 
 ## Filters / cols

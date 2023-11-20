@@ -1,5 +1,4 @@
 source('scripts/01_read_data.R')
-library(cowplot)
 
 ## 1. benthic trends in time
 g1<-ggplot(ben %>% filter(year != 1994), 

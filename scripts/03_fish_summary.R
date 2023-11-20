@@ -1,5 +1,4 @@
 source('scripts/01_read_data.R')
-library(cowplot)
 
 # 1. biomass trends in time
 g1<-ggplot(biom, aes(factor(year), log10(biomass_kgha), fill = state)) + 
