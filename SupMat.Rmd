@@ -1,0 +1,38 @@
+---
+title: '**Supplementary Figures**'
+header-includes:
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+output:
+  pdf_document: null
+  latex_engine: pdflatex
+  html_document:
+    df_print: paged
+---
+
+# Increased resilience and regime-shift reversal through repeat mass coral bleaching
+
+\newpage
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
+```
+
+```{r, echo=F} 
+## set up figcounter
+i = 0
+```
+
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureS1.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Benthic cover (%) from 1994-2022 at each reef for macroalgae at recovering reefs (a) and hard coral at shifted reefs (b).** Points are the mean benthic cover across sites (± 2 * standard error), and grey lines are site-level cover values. Dashed line is the mean pre-bleaching benthic cover in 1994.
+
+
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureS2.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Euclidean distance of recovering (blue) and regime-shifted (red) reefs from 1994-2022.** Points are mean Euclidean distance among all reefs in each survey year shown against (a) hard coral cover (%) and (b) macroalgae cover (%), connected through time with lines.

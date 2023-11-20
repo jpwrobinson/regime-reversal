@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SAGA_METADATA>
+  <HISTORY>
+    <MODULE>Contour Lines from Grid</MODULE>
+    <OPTION type="double" id="ZMIN" name="Minimum Contour Value">-100.000000</OPTION>
+    <OPTION type="double" id="ZMAX" name="Maximum Contour Value">0.000000</OPTION>
+    <OPTION type="double" id="ZSTEP" name="Equidistance">10.000000</OPTION>
+    <OPTION type="grid_system" id="PARAMETERS_GRID_SYSTEM" name="Grid system">
+      <CELLSIZE>30</CELLSIZE>
+      <XMIN>292071</XMIN>
+      <XMAX>411381</XMAX>
+      <YMIN>9457682</YMIN>
+      <YMAX>9537392</YMAX>
+      <DATA type="grid" id="INPUT" name="Grid">
+        <MODULE>Import ESRI Arc/Info Grid</MODULE>
+        <OPTION type="file" id="FILE" name="File">C:\Users\cgerry.SFA\Desktop\bathy.txt</OPTION>
+        <OPTION type="choice" id="GRID_TYPE" name="Target Grid Type">2</OPTION>
+        <OPTION type="choice" id="NODATA" name="NoData Value">0</OPTION>
+        <OPTION type="double" id="NODATA_VAL" name="User Defined NoData Value">-99999.000000</OPTION>NOT SET</DATA>
+    </OPTION>
+    <DATA type="grid" id="INPUT" name="Grid">
+      <MODULE>Import ESRI Arc/Info Grid</MODULE>
+      <OPTION type="file" id="FILE" name="File">C:\Users\cgerry.SFA\Desktop\bathy.txt</OPTION>
+      <OPTION type="choice" id="GRID_TYPE" name="Target Grid Type">2</OPTION>
+      <OPTION type="choice" id="NODATA" name="NoData Value">0</OPTION>
+      <OPTION type="double" id="NODATA_VAL" name="User Defined NoData Value">-99999.000000</OPTION>NOT SET</DATA>
+  </HISTORY>
+  <SOURCE>
+    <FILE>C:\All_Doc\work\GIS_work\ShapeFiles\BATHYMETRY\Bathy_DEM\Vector_ArcGIS\DEM.bathymetry\seychelles_bathymetry_grid_shp_10m_interval.shp</FILE>
+    <DATABASE></DATABASE>
+    <PROJECTION></PROJECTION>
+  </SOURCE>
+</SAGA_METADATA>
