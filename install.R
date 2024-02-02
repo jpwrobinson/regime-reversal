@@ -1,0 +1,1 @@
+pacman::p_load(tidyverse, readxl, janitor, cowplot, vegan, betapart, brms, rethinking, mgcv, gratia, install=TRUE)
