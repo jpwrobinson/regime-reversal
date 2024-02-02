@@ -30,9 +30,40 @@ knitr::include_graphics("fig/FigureS1.pdf"); i = i + 1
 
 **Fig. S`r i`. Benthic cover (%) from 1994-2022 at each reef for macroalgae at recovering reefs (a) and hard coral at shifted reefs (b).** Points are the mean benthic cover across sites (± 2 * standard error), and grey lines are site-level cover values. Dashed line is the mean pre-bleaching benthic cover in 1994.
 
-
+\newpage
 ```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
-knitr::include_graphics("fig/FigureS2.pdf"); i = i + 1
+knitr::include_graphics("fig/FigureSX_corals.pdf"); i = i + 1
 ```
 
-**Fig. S`r i`. Euclidean distance of recovering (blue) and regime-shifted (red) reefs from 1994-2022.** Points are mean Euclidean distance among all reefs in each survey year shown against (a) hard coral cover (%) and (b) macroalgae cover (%), connected through time with lines.
+**Fig. S`r i`. Cover of coral growth forms on recovering (top) and regime-shifted (bottom) reefs from 1994-2022.** Points are mean percent cover of branching, encrusting, table, and massive coral growth forms (± 2 * standard error).
+
+\newpage
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureSX_massive_encrusting.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Cover of encrusting and massive corals on recovering reefs from 2005-2022.** Points are mean coral cover at each recovering site. 
+
+
+\newpage
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureSX_full_pca.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Change in benthic community composition (coral growth forms, soft coral and macroalgal cover, sand, rock, and rubble) among survey years**. Distances are to 1994 as the baseline, plotted against percent cover of live hard coral on recovering reefs (a), and percent cover of macroalgae on regime-shifted reefs  (b). See Fig. 3 for community composition excluding abiotic components (sand, rock, rubble.
+
+\newpage
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureSX_nmds_ill.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Nonmetric Multidimensional Scaling of coral genera on recovering reefs and algal genera on shifted reefs**. Line intercepts were used to estimate cover of 33 coral genera and 18 algal genera at each site, for 2014 - 2022. Ellipses show the average position of sites in each year, and arrows show the ordination scores for taxa with P < 0.01.
+
+\newpage
+```{r, out.height="80%", echo=F,fig.align='center', warning=FALSE, message=FALSE}
+knitr::include_graphics("fig/FigureSX_herb.pdf"); i = i + 1
+```
+
+**Fig. S`r i`. Biomass of browsing herbivores, scraping herbivores, and grazing herbivores on recovering verses regime-shifted reefs 2005-2022**. 1994 baseline value is represented as horizontal dashed line and regime-shift reversal reef trends are shown as black solid lines. Coloured lines are median posterior predictions for each reef regime over time (95% and 50% certainty intervals) and points are average site-level values.
+
+

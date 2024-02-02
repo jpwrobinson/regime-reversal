@@ -3,7 +3,7 @@
 # source('scripts/04_beta_fish.R')
 
 # 3. FG
-fg_focs<-c('Herbivore Browser', 'Herbivore Scraper', #'Corallivore', 
+fg_focs<-c('Herbivore Browser', 'Herbivore Scraper', 'Herbivore Grazer', 
            'Planktivore')
 
 biom_fg %>% filter(fg_fine %in% fg_focs[3]) %>% ggplot() + geom_histogram(aes(biomass_kgha))
