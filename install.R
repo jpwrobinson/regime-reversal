@@ -1,1 +1,2 @@
-pacman::p_load(tidyverse, readxl, janitor, cowplot, vegan, betapart, brms, rethinking, mgcv, gratia, install=TRUE)
+install.packages('pacman')
+pacman::p_load(tidyverse, readxl, janitor, cowplot, vegan, betapart,miceadds, brms, rethinking, mgcv, gratia, install=TRUE)
