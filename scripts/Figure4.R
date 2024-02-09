@@ -1,9 +1,8 @@
 ## fish figure
-library(cowplot)
 # source('scripts/03_fish_summary.R')
 # source('scripts/04_beta_fish.R')
 
-fg_focs<-c('Herbivore Browser', 'Herbivore Scraper', #'Corallivore', 
+fg_focs<-c('Herbivore Browser', 'Herbivore Scraper', 'Herbivore Grazer', #'Corallivore', 
            'Planktivore')
 biom_fg<-biom_fg %>% filter(fg_fine %in% fg_focs)
 
@@ -42,7 +41,9 @@ beta_pred<-read.csv('data/pred/betadiv_avg.csv')
 fg_pred<-rbind(
     read.csv('data/pred/Herbivore Browserbiomass_avg.csv') %>% mutate(fg_fine = 'Herbivore Browser'),
     read.csv('data/pred/Herbivore Scraperbiomass_avg.csv') %>% mutate(fg_fine = 'Herbivore Scraper'),
-    read.csv('data/pred/Planktivorebiomass_avg.csv') %>% mutate(fg_fine = 'Planktivore'))
+    read.csv('data/pred/Herbivore Grazerbiomass_avg.csv') %>% mutate(fg_fine = 'Herbivore Grazer'))
+
+plank_pred<-read.csv('data/pred/Planktivorebiomass_avg.csv') %>% mutate(fg_fine = 'Planktivore')
 
 ##  ------------------------------------------------------------ ##    
 ## ----------------------------- PLOTS  -----------------------------
@@ -66,7 +67,8 @@ gbiom<-ggplot(biom_plot,
     annotate('text', 2014, 220, label = 'Shifted', col=shifted, size=3) +
     annotate('text', 2018, 750, label = 'Recovering', col=recovering, size=3) +
     theme(legend.position= 'none', 
-          axis.text.x = element_blank())
+          axis.text.x = element_blank(),axis.ticks.x = element_blank(),
+          plot.margin=unit(c(10.5, 5.5, 1.5, 5.5), 'points'))
 
 # Panel b beta diversity
 gbeta<-ggplot(beta_plot, aes(year, beta)) + 
@@ -82,16 +84,16 @@ gbeta<-ggplot(beta_plot, aes(year, beta)) +
     scale_fill_manual(values = state_cols) +
     scale_x_continuous(breaks=c(2005, 2008, 2011, 2014, 2017, 2022)) +
     labs(x = '', y = expression(paste(beta,'-diversity'))) +
-    theme(legend.position= 'none')
+    theme(legend.position= 'none',plot.margin=unit(c(1.5, 5.5, 10.5, 5.5), 'points'))
 
-gfg<-ggplot(fg_plot, 
+gfg<-ggplot(fg_plot %>% filter(!fg_fine=='Planktivore'), 
            aes(year, biomass_kgha)) + 
     geom_ribbon(data=fg_pred, aes(year, pred, ymin=lower, ymax = upper, fill=state), alpha=0.3) +
     geom_ribbon(data=fg_pred, aes(year, pred, ymin=lower50, ymax = upper50, fill=state), alpha=0.5) +
     geom_line(data = fg_pred, aes(year, pred, col=state)) +
-    geom_hline(data = base_fg, aes(yintercept = biomass_kgha), linetype=5, col='black') +
-    geom_line(data = biom_fg %>% filter(location == 'Praslin SW Patch' & year > 1994), col = 'black') +
-    geom_point(data = biom_fg %>% filter(location == 'Praslin SW Patch' & year > 1994), col = 'black', size=1.2, alpha=0.7) +
+    geom_hline(data = base_fg %>% filter(!fg_fine=='Planktivore'), aes(yintercept = biomass_kgha), linetype=5, col='black') +
+    geom_line(data = biom_fg %>% filter(!fg_fine=='Planktivore' & location == 'Praslin SW Patch' & year > 1994), col = 'black') +
+    geom_point(data = biom_fg %>% filter(!fg_fine=='Planktivore' & location == 'Praslin SW Patch' & year > 1994), col = 'black', size=1.2, alpha=0.7) +
     # geom_pointrange(aes(ymin = lo, ymax = hi), position = position_dodge(width=0.5)) +
     geom_point(aes(col = state)) +
     scale_x_continuous(breaks=c(2005, 2008, 2011, 2014, 2017, 2022)) +
@@ -101,10 +103,30 @@ gfg<-ggplot(fg_plot,
     labs(y = expression(paste('kg ha'^-1)), x = '') +
     theme(legend.position= 'none')
 
+gplank<-ggplot(fg_plot %>% filter(fg_fine=='Planktivore'), 
+            aes(year, biomass_kgha)) + 
+    geom_ribbon(data=plank_pred, aes(year, pred, ymin=lower, ymax = upper, fill=state), alpha=0.3) +
+    geom_ribbon(data=plank_pred, aes(year, pred, ymin=lower50, ymax = upper50, fill=state), alpha=0.5) +
+    geom_line(data = plank_pred, aes(year, pred, col=state)) +
+    geom_hline(data = base_fg %>% filter(fg_fine=='Planktivore'), aes(yintercept = biomass_kgha), linetype=5, col='black') +
+    geom_line(data = biom_fg %>% filter(fg_fine=='Planktivore' & location == 'Praslin SW Patch' & year > 1994), col = 'black') +
+    geom_point(data = biom_fg %>% filter(fg_fine=='Planktivore' & location == 'Praslin SW Patch' & year > 1994), col = 'black', size=1.2, alpha=0.7) +
+    # geom_pointrange(aes(ymin = lo, ymax = hi), position = position_dodge(width=0.5)) +
+    geom_point(aes(col = state)) +
+    scale_x_continuous(breaks=c(2005, 2008, 2011, 2014, 2017, 2022)) +
+    facet_grid(fg_fine~., scales='free_y') +
+    scale_colour_manual(values= state_cols) +
+    scale_fill_manual(values= state_cols) +
+    labs(y = expression(paste('kg ha'^-1)), x = '') +
+    theme(legend.position= 'none', axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          plot.margin=unit(c(25.5, 5.5, 5.5, 5.5), 'points'))
+
 pdf(file = 'fig/Figure4.pdf', height=5, width=10)
 left<-plot_grid(gbiom, gbeta, nrow=2, labels=c('a', 'b'), align='v')
+right<-plot_grid(gplank, gcvore, nrow= 2, labels =c('d', 'e'))
 print(
-    plot_grid(left, gfg, gcvore, nrow=1, labels=c('', 'c', 'd'))
+    plot_grid(left, gfg, right, nrow=1, labels=c('', 'c', ''))
 )
 dev.off()
 

@@ -1,14 +1,3 @@
-# Oxymonacanthus abundance
-pabund<-fish_count %>% 
-    filter(species == 'Oxymonacanthus longirostris') %>% 
-    group_by(year, location, count, state) %>% 
-    summarise(abund = sum(abundance_500m2)) %>% 
-    group_by(year, location, state) %>% 
-    summarise(abund = mean(abund)) %>% 
-    group_by(location) %>% 
-    mutate(ylab = abund[which.max(year)], xlab = year[which.max(year)]) %>% 
-    left_join(ben %>% select(location,year, coral_branching))
-
 ## Corallivore abundance
 cabund<-fish_count %>% 
     filter(fg_fine == 'Corallivore') %>% 
